@@ -17,13 +17,13 @@ namespace QlikViewManagement
         /// <param name="args"></param>
         static void Main(string[] args)
         {
-            Version1(args);
-            //Version2(args);
-        }
-
-        static void Version1(string[] args)
-        {
             var config = new HttpSelfHostConfiguration(ConfigurationManager.AppSettings["ServiceUrl"]);
+
+
+            //config.Routes.MapHttpRoute(
+            //    "Default", // Route name
+            //    "{controller}/{action}/{id}", // URL with parameters
+            //    new {controller = "Home", action = "Index", id = RouteParameter.Optional}); // Parameter defaults
 
             config.Routes.MapHttpRoute(
                 "API Default", "api/{controller}/{id}",
@@ -34,26 +34,6 @@ namespace QlikViewManagement
                 server.OpenAsync().Wait();
                 Console.WriteLine("Press Enter to quit.");
                 Console.ReadLine();
-            }
-        }
-
-        static void Version2(string[] args)
-        {
-            Uri baseAddress = new Uri(ConfigurationManager.AppSettings["ServiceUrl"]);
-
-            using (ServiceHost host = new ServiceHost(typeof(QlikViewManagement.Service.SaleService), baseAddress))
-            {
-                ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
-                smb.HttpGetEnabled = true;
-                smb.MetadataExporter.PolicyVersion = PolicyVersion.Policy15;
-                host.Description.Behaviors.Add(smb);
-
-                host.Open();
-
-                Console.WriteLine("The service is ready at: {0}", baseAddress);
-                Console.WriteLine("Press <Enter> to stop the service");
-                Console.ReadKey();
-                host.Close();
             }
         }
     }
