@@ -1,0 +1,11 @@
+D:\data\users\yakir-m\Documents\GitHub\QVUserManagerRepository\qv-user-manager\bin\Debug\qv-user-manager.exe.config
+D:\data\users\yakir-m\Documents\GitHub\QVUserManagerRepository\qv-user-manager\bin\Debug\qv-user-manager.exe
+D:\data\users\yakir-m\Documents\GitHub\QVUserManagerRepository\qv-user-manager\bin\Debug\qv-user-manager.pdb
+D:\data\users\yakir-m\Documents\GitHub\QVUserManagerRepository\qv-user-manager\obj\Debug\qv-user-manager.csprojResolveAssemblyReference.cache
+D:\data\users\yakir-m\Documents\GitHub\QVUserManagerRepository\qv-user-manager\obj\Debug\qv-user-manager.exe
+D:\data\users\yakir-m\Documents\GitHub\QVUserManagerRepository\qv-user-manager\obj\Debug\qv-user-manager.pdb
+D:\data\users\yakir-m\Desktop\QlikViewManagement\QlikViewManagement\qv-user-manager\bin\Debug\qv-user-manager.exe.config
+D:\data\users\yakir-m\Desktop\QlikViewManagement\QlikViewManagement\qv-user-manager\bin\Debug\qv-user-manager.exe
+D:\data\users\yakir-m\Desktop\QlikViewManagement\QlikViewManagement\qv-user-manager\bin\Debug\qv-user-manager.pdb
+D:\data\users\yakir-m\Desktop\QlikViewManagement\QlikViewManagement\qv-user-manager\obj\Debug\qv-user-manager.exe
+D:\data\users\yakir-m\Desktop\QlikViewManagement\QlikViewManagement\qv-user-manager\obj\Debug\qv-user-manager.pdb

@@ -1,0 +1,5 @@
+C:\Users\administrator.ORBOGRAPH-HRCM\Desktop\QlikView\QlikViewUserManager\qv-user-manager\bin\Release\qv-user-manager.exe.config
+C:\Users\administrator.ORBOGRAPH-HRCM\Desktop\QlikView\QlikViewUserManager\qv-user-manager\bin\Release\qv-user-manager.exe
+C:\Users\administrator.ORBOGRAPH-HRCM\Desktop\QlikView\QlikViewUserManager\qv-user-manager\bin\Release\qv-user-manager.pdb
+C:\Users\administrator.ORBOGRAPH-HRCM\Desktop\QlikView\QlikViewUserManager\qv-user-manager\obj\Release\qv-user-manager.exe
+C:\Users\administrator.ORBOGRAPH-HRCM\Desktop\QlikView\QlikViewUserManager\qv-user-manager\obj\Release\qv-user-manager.pdb
