@@ -48,10 +48,11 @@ namespace qv_user_manager
 
         public static string Run(string[] args)
         {
-            StringBuilder response = new StringBuilder();
-            StringWriter responseWriter = new StringWriter(response);
+            var response = new StringBuilder();
+            var responseWriter = new StringWriter(response);
 
-            if (!VerifyServerConfig())
+
+            if (!VerifyServerConfig(responseWriter))
             {
                 Environment.ExitCode = (int)ExitCode.Error;
                 return "Error: Verify Server Config Failed";
@@ -178,8 +179,9 @@ namespace qv_user_manager
         /// Verify that the user has changed the server settings
         /// </summary>
         /// <returns></returns>
-        public static bool VerifyServerConfig()
+        public static bool VerifyServerConfig(TextWriter o)
         {
+            var sbresponse = new StringBuilder();
             try
             {
                 var clientSection = ConfigurationManager.GetSection("system.serviceModel/client") as ClientSection;
@@ -192,20 +194,18 @@ namespace qv_user_manager
 
                 if (address.Contains("your-server-address"))
                 {
-                    Console.WriteLine("The server address needs to be configured in the qv-user-manager.config file." + System.Environment.NewLine);
+                    o.WriteLine("The server address needs to be configured in the qv-user-manager.config file." + System.Environment.NewLine);
 
-                    Console.WriteLine("Current value: " + address);
-
+                    o.WriteLine("Current value: " + address);
+                    
                     return false;
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
-
+                o.WriteLine(e.Message);
                 return false;
             }
-
             return true;
         }
     }

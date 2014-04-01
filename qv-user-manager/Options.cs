@@ -910,9 +910,9 @@ namespace NDesk.Options {
 					o.Write (new string (' ', OptionWidth));
 				}
 
-				List<string> lines = GetLines (localizer (GetDescription (p.Description)));
+				var lines = GetLines (localizer (GetDescription (p.Description)));
 				o.WriteLine (lines [0]);
-				string prefix = new string (' ', OptionWidth+2);
+				var prefix = new string (' ', OptionWidth+2);
 				for (int i = 1; i < lines.Count; ++i) {
 					o.Write (prefix);
 					o.WriteLine (lines [i]);
@@ -922,9 +922,9 @@ namespace NDesk.Options {
 
 		bool WriteOptionPrototype (TextWriter o, Option p, ref int written)
 		{
-			string[] names = p.Names;
+			var names = p.Names;
 
-			int i = GetNextOptionIndex (names, 0);
+			var i = GetNextOptionIndex (names, 0);
 			if (i == names.Length)
 				return false;
 

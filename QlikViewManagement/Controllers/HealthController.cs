@@ -3,12 +3,13 @@ using System.Web.Http;
 
 namespace QlikViewManagement.Controllers
 {
-    public class HomeController : ApiController
+    public class HealthController : ApiController
     {
         public static string TextMessagePrefix = "QlikView Management Self Host Service is working ";
-        public string Index()
+
+        public string GetHealth()
         {
-            return TextMessagePrefix + DateTime.Now.Millisecond;
+            return TextMessagePrefix + (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalMilliseconds;
         }
     }
 }

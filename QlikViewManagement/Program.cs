@@ -19,12 +19,6 @@ namespace QlikViewManagement
         {
             var config = new HttpSelfHostConfiguration(ConfigurationManager.AppSettings["ServiceUrl"]);
 
-
-            //config.Routes.MapHttpRoute(
-            //    "Default", // Route name
-            //    "{controller}/{action}/{id}", // URL with parameters
-            //    new {controller = "Home", action = "Index", id = RouteParameter.Optional}); // Parameter defaults
-
             config.Routes.MapHttpRoute(
                 "API Default", "api/{controller}/{id}",
                 new { id = RouteParameter.Optional });

@@ -17,25 +17,32 @@ namespace QlikViewManagement.Client
     class Program
     {
         static readonly HttpClient Client = new HttpClient();
-
-        static string QvUserManager(string args)
+        static string ServerHealth()
         {
-            StringBuilder response = new StringBuilder();
-            var resp = Client.GetAsync(string.Format("api/qvusers/{0}", args)).Result;
-            resp.EnsureSuccessStatusCode();
+            var response = new StringBuilder();
+            var client = Client.GetAsync("api/health").Result;
+            client.EnsureSuccessStatusCode();
+            var result = client.Content.ReadAsAsync<string>().Result;
+            response.AppendLine(result);
+            return response.ToString();
+        }
 
-            var products = resp.Content.ReadAsAsync<string>().Result;
-            foreach (var p in products)
-            {
-                response.AppendLine(string.Format("{0}", p));
-            }
+        static string UserManagement(string[] args)
+        {
+            var response = new StringBuilder();
+            var query = string.Format("api/qvusers?sargs={0}", string.Join(",", args));
+            var client = Client.GetAsync(query).Result;
+            client.EnsureSuccessStatusCode();
+
+            var result = client.Content.ReadAsAsync<string>().Result;
+            response.AppendLine(result);
             return response.ToString();
         }
 
         static string ListAllProducts()
         {
-            StringBuilder response = new StringBuilder();
-            HttpResponseMessage resp = Client.GetAsync("api/products").Result;
+            var response = new StringBuilder();
+            var resp = Client.GetAsync("api/products").Result;
             resp.EnsureSuccessStatusCode();
 
             var products = resp.Content.ReadAsAsync<IEnumerable<QlikViewManagement.Models.Product>>().Result;
@@ -48,7 +55,7 @@ namespace QlikViewManagement.Client
 
         static string ListProduct(int id)
         {
-            StringBuilder response = new StringBuilder();
+            var response = new StringBuilder();
             var resp = Client.GetAsync(string.Format("api/products/{0}", id)).Result;
             resp.EnsureSuccessStatusCode();
 
@@ -59,15 +66,13 @@ namespace QlikViewManagement.Client
 
         static string ListProducts(string category)
         {
-            StringBuilder response = new StringBuilder();
-            response.AppendLine(string.Format("Products in '{0}':", category));
-
-            string query = string.Format("api/products?category={0}", category);
-
+            var response = new StringBuilder();
+            var query = string.Format("api/products?category={0}", category);
             var resp = Client.GetAsync(query).Result;
             resp.EnsureSuccessStatusCode();
 
             var products = resp.Content.ReadAsAsync<IEnumerable<QlikViewManagement.Models.Product>>().Result;
+            response.AppendLine(string.Format("Products in '{0}':", category));
             foreach (var product in products)
             {
                 response.AppendLine(product.Name);
@@ -79,12 +84,13 @@ namespace QlikViewManagement.Client
         {
             Client.BaseAddress = new Uri(ConfigurationManager.AppSettings["ServiceUrl"]);
 
-            StringBuilder response = new StringBuilder();
-            //QvUserManager(string.Join(",", args));
-            response.AppendLine(ListAllProducts());
-            response.AppendLine(ListProduct(1));
-            response.AppendLine(ListProducts("toys"));
-            response.AppendLine("Press Enter to quit.");
+            var response = new StringBuilder();
+            Console.WriteLine(ServerHealth());
+            Console.WriteLine(UserManagement(args));
+            //Console.WriteLine(ListAllProducts());
+            //Console.WriteLine(ListProduct(1));
+            //Console.WriteLine(ListProducts("toys"));
+            //Console.WriteLine("Press Enter to quit.");
 
             Console.WriteLine(response.ToString());
             Console.ReadLine();
